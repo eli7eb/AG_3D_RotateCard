@@ -266,6 +266,7 @@ public class MainActivity extends AppCompatActivity implements GLSurfaceView.Ren
 
     // region Utils
     private Bitmap loadBitmapFromAssets() {
+        // Drawable d_logo = getDrawable(R.drawable.logo);
         Drawable d_logo = getDrawable(R.drawable.logo);
         Bitmap bm_logo = ((BitmapDrawable)d_logo).getBitmap();
         return (bm_logo);
