@@ -28,10 +28,12 @@ import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 import android.os.Bundle;
 
+import static android.opengl.GLUtils.getEGLErrorString;
+
 public class MainActivity extends AppCompatActivity implements GLSurfaceView.Renderer,
         View.OnTouchListener, ScaleGestureDetector.OnScaleGestureListener {
 
-
+    private String tag = MainActivity.class.getSimpleName();
     // region Constants
     public static final String MVP_MATRIX = "uMVPMatrix";
     public static final String POSITION = "vPosition";
@@ -213,6 +215,7 @@ public class MainActivity extends AppCompatActivity implements GLSurfaceView.Ren
 
         GLES20.glDisableVertexAttribArray(vPosition);
         GLES20.glDisableVertexAttribArray(vTexturePosition);
+        checkError();
     }
     // endregion GLSurfaceView.Renderer
 
@@ -313,6 +316,25 @@ public class MainActivity extends AppCompatActivity implements GLSurfaceView.Ren
             throw new RuntimeException("Compilation failed : " + GLES20.glGetShaderInfoLog(iShader));
         }
         return iShader;
+    }
+
+    private void checkError() {
+        int error = GLES20.glGetError();
+        if (error != GLES20.GL_NO_ERROR) {
+            Log.d(tag,"Error : "+getEGLErrorString(error));
+
+        }
+    }
+
+    private void calcMath(String name, Double value) {
+        int degrees = 5;
+        Math.cos(value);
+        Math.sin(value);
+        double p = Math.PI;
+    }
+
+    private void drawVertex() {
+        glDrawVertex()
     }
     // endregion Utils
 }
