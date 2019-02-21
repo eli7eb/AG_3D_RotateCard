@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">AG_3D_RotateCard</string>
+    <string name="start_shopping">START SHOPPING</string>
+    <string name="desc">desc</string>
+    <string name="blank_text">\"\"</string>
+    <string name="go_to_shop">GO TO SHOP</string>
+    <string name="show_3d">SHOW_3D</string>
 </resources>
