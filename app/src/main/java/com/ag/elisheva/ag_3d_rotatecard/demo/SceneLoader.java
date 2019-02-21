@@ -119,12 +119,19 @@ public class SceneLoader implements LoaderTask.Callback {
     private Context context;
     private Activity activity;
     private Uri uri;
+    private LogoGLSurfaceView glView;
 
     public SceneLoader(Context context, Activity activity) {
         this.context = context;
         this.activity = activity;
     }
 
+    /**
+     *
+     */
+    public void passGLViewData(LogoGLSurfaceView glView) {
+        this.glView = glView;
+    }
     /**
      * get the data for value - obj file name
      * @param uri
@@ -211,15 +218,15 @@ public class SceneLoader implements LoaderTask.Callback {
         List<Object3DData> newList = new ArrayList<Object3DData>(objects);
         newList.add(obj);
         this.objects = newList;
-        // TODO requestRender();
+        requestRender();
     }
 
-    /*private void requestRender() {
+    private void requestRender() {
         // TODO request render only if GL view is already initialized
-        if (logoGlView != null) {
-            logoGlView.requestRender();
+        if (glView != null) {
+            glView.requestRender();
         }
-    }*/
+    }
 
     public synchronized List<Object3DData> getObjects() {
         return objects;

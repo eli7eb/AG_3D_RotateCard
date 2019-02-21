@@ -31,6 +31,7 @@ public class LogoGLSurfaceView extends GLSurfaceView {
     public LogoGLSurfaceView(Context context){
         super(context);
         //
+        setEGLContextClientVersion(2);
         logoGLRenderer = new LogoGLRenderer(this);
         setRenderer(logoGLRenderer);
         setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);

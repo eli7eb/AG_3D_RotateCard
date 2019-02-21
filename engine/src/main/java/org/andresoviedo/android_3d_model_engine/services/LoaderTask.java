@@ -8,8 +8,6 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import org.andresoviedo.android_3d_model_engine.model.Object3DData;
-
-import java.io.InputStream;
 import java.util.List;
 
 /**

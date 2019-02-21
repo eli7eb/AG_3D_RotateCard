@@ -187,6 +187,28 @@ public class LogoGLRenderer implements GLSurfaceView.Renderer {
         // animate scene
         scene.onDrawFrame();
         List<Object3DData> objects = scene.getObjects();
+        Camera camera = scene.getCamera();
+        if (camera.hasChanged()) {
+            Matrix.setLookAtM(modelViewMatrix, 0, camera.xPos, camera.yPos, camera.zPos, camera.xView, camera.yView,
+                    camera.zView, camera.xUp, camera.yUp, camera.zUp);
+            // Log.d("Camera", "Changed! :"+camera.ToStringVector());
+            Matrix.multiplyMM(mvpMatrix, 0, modelProjectionMatrix, 0, modelViewMatrix, 0);
+            camera.setChanged(false);
+        }
+
+        // draw light
+        if (scene.isDrawLighting()) {
+
+            Object3DImpl lightBulbDrawer = (Object3DImpl) drawer.getPointDrawer();
+
+            float[] lightModelViewMatrix = lightBulbDrawer.getMvMatrix(lightBulbDrawer.getMMatrix(scene.getLightBulb()),modelViewMatrix);
+
+            // Calculate position of the light in eye space to support lighting
+            Matrix.multiplyMV(lightPosInEyeSpace, 0, lightModelViewMatrix, 0, scene.getLightPosition(), 0);
+
+            // Draw a point that represents the light bulb
+            lightBulbDrawer.draw(scene.getLightBulb(), modelProjectionMatrix, modelViewMatrix, -1, lightPosInEyeSpace);
+        }
 
         for (int i=0; i<objects.size(); i++) {
             Object3DData objData = null;
@@ -287,5 +309,21 @@ public class LogoGLRenderer implements GLSurfaceView.Renderer {
         }
 
 
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public float[] getModelProjectionMatrix() {
+        return modelProjectionMatrix;
+    }
+
+    public float[] getModelViewMatrix() {
+        return modelViewMatrix;
     }
 }

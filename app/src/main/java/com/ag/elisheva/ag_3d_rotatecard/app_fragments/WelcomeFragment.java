@@ -36,7 +36,7 @@ public class WelcomeFragment extends Fragment {
     public GLSurfaceView getGlView() {
         return glView;
     }
-    public String test;
+    public String test="test";
     private LogoGLSurfaceView glView;
     private SceneLoader scene;
     public WelcomeFragment() {
@@ -70,7 +70,6 @@ public class WelcomeFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-        InputStream inStream = null;
         Context context = MainActivity.getContext();
         AssetManager am = context.getResources().getAssets();
         try {
@@ -82,7 +81,7 @@ public class WelcomeFragment extends Fragment {
             String extension = s.substring(s.lastIndexOf("."));
             if (extension.equalsIgnoreCase(".obj")) {
                 try {
-                    inStream = am.open("rose/" + s);
+                    InputStream inStream = am.open("rose/" + s);
                     break;
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -110,7 +109,7 @@ public class WelcomeFragment extends Fragment {
             Log.d(tag,"Error "+e.getMessage());
         }
         glView.setScene(scene);
-
+        scene.passGLViewData(glView);
         return glView;
 
 
