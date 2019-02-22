@@ -34,6 +34,10 @@ public class ContentUtils {
     private static ThreadLocal<Activity> currentActivity = new ThreadLocal<>();
 
     private static File currentDir = null;
+    private static Uri uri_mtl;
+    private static String mtl_name;
+    private static Uri uri_bmp;
+    private static String bmp_name;
 
     public static void printTouchCapabilities(PackageManager packageManager) {
         if (packageManager.hasSystemFeature(PackageManager.FEATURE_TOUCHSCREEN_MULTITOUCH)) {
@@ -65,8 +69,8 @@ public class ContentUtils {
     public static void provideAssets(Activity activity) {
         documentsProvided.clear();
         try {
-            for (String document : activity.getAssets().list("models")) {
-                documentsProvided.put(document, Uri.parse("assets://assets/models/" + document));
+            for (String document : activity.getAssets().list("rose")) {
+                documentsProvided.put(document, Uri.parse("assets://assets/rose/" + document));
             }
         } catch (IOException ex) {
             Log.e("ContentUtils", "Error listing assets from models folder", ex);
@@ -78,7 +82,17 @@ public class ContentUtils {
         Log.i("ContentUtils", "Added (" + name + ") " + uri);
     }
 
+
+    public static void addMtlUri(String mtl_name, Uri uri_mtl) {
+        ContentUtils.mtl_name = mtl_name;
+        ContentUtils.uri_mtl = uri_mtl;
+    }
+    public static void addBmplUri(String bmp_name, Uri uri_bmp) {
+        ContentUtils.bmp_name = bmp_name;
+        ContentUtils.uri_bmp = uri_bmp;
+    }
     public static Uri getUri(String name) {
+
         return documentsProvided.get(name);
     }
 
@@ -90,6 +104,12 @@ public class ContentUtils {
      * @throws IOException if there is an error opening stream
      */
     public static InputStream getInputStream(String path) throws IOException {
+        if (path.equalsIgnoreCase("roselogo2.mtl")) {
+            return getInputStream(ContentUtils.uri_mtl);
+        }
+        if (path.equalsIgnoreCase("logo_color.bmp")) {
+            return getInputStream(ContentUtils.uri_bmp);
+        }
         Uri uri = getUri(path);
         if (uri == null && currentDir != null) {
             uri = Uri.parse("file://" + new File(currentDir, path).getAbsolutePath());

@@ -16,6 +16,7 @@ import com.ag.elisheva.ag_3d_rotatecard.MainActivity;
 import com.ag.elisheva.ag_3d_rotatecard.demo.SceneLoader;
 import com.ag.elisheva.ag_3d_rotatecard.view.LogoGLSurfaceView;
 
+import org.andresoviedo.util.android.ContentUtils;
 import org.andresoviedo.util.android.FileUtils;
 
 import java.io.File;
@@ -26,9 +27,15 @@ public class WelcomeFragment extends Fragment {
 
     // TODO: Rename and change types of parameters
     private static final String ARG_PARAM1 = "package";
-    private static final String ARG_PARAM2 = "file_name";
+    private static final String ARG_PARAM2 = "file_name_obj";
+    private static final String ARG_PARAM3 = "file_name_mtl";
+    private static final String ARG_PARAM4 = "file_name_bmp";
+
     private String mParam1;
     private String mParam2;
+    private String mParam3;
+    private String mParam4;
+
     private String tag = WelcomeFragment.class.getSimpleName();
     private Button goButton;
     onChoiceSelectedListener mCallback;
@@ -51,12 +58,14 @@ public class WelcomeFragment extends Fragment {
      * @return A new instance of fragment WelcomeFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static WelcomeFragment newInstance(String param1, String param2) {
+    public static WelcomeFragment newInstance(String param1, String param2, String param3, String param4) {
 
         WelcomeFragment fragment = new WelcomeFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
+        args.putString(ARG_PARAM3, param3);
+        args.putString(ARG_PARAM4, param4);
         fragment.setArguments(args);
         return fragment;
     }
@@ -68,6 +77,9 @@ public class WelcomeFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+            mParam3 = getArguments().getString(ARG_PARAM3);
+            mParam4 = getArguments().getString(ARG_PARAM4);
+
         }
 
         Context context = MainActivity.getContext();
@@ -82,10 +94,27 @@ public class WelcomeFragment extends Fragment {
             if (extension.equalsIgnoreCase(".obj")) {
                 try {
                     InputStream inStream = am.open("rose/" + s);
-                    break;
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+            } else
+            if (extension.equalsIgnoreCase(".mtl")) {
+                Uri uri_mtl=null;
+                try {
+                    uri_mtl = Uri.parse("assets://" + mParam1 + "/" + mParam3);
+                } catch (Error error) {
+                    error.printStackTrace();
+                }
+                ContentUtils.addMtlUri(mParam3,uri_mtl);
+            } else
+            if (extension.equalsIgnoreCase(".bmp")) {
+                Uri uri_bmp=null;
+                try {
+                    uri_bmp = Uri.parse("assets://" + mParam1 + "/" + mParam4);
+                } catch (Error error) {
+                    error.printStackTrace();
+                }
+                ContentUtils.addBmplUri(mParam3,uri_bmp);
             }
         }
 

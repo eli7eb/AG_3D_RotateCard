@@ -305,6 +305,7 @@ public class WavefrontLoader {
 						numFaces++;
 					} else if (line.startsWith("mtllib ")) // build material
 					{
+						Log.d(tag,"Material "+line);
 						// materials = new Materials(new File(modelFile.getParent(),
 						// line.substring(7)).getAbsolutePath());
 						// materials = new Materials(line.substring(7));

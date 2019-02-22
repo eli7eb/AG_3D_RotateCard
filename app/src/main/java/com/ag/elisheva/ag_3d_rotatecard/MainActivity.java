@@ -86,7 +86,9 @@ public class MainActivity extends AppCompatActivity  implements WelcomeFragment.
             String asset_package = getPackageName();
 
             bundle.putString("package",asset_package);
-            bundle.putString("file_name","rose/roselogo2.obj");
+            bundle.putString("file_name_obj","rose/roselogo2.obj");
+            bundle.putString("file_name_mtl","rose/roselogo2.mtl");
+            bundle.putString("file_name_bmp","rose/logo_color.bmp");
             welcomeFragment.setArguments(bundle);
             fragmentTransaction.add (R.id.fragment_container, welcomeFragment);
             fragmentTransaction.commit();
