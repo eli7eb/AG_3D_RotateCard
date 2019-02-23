@@ -13,6 +13,7 @@ import static android.view.MotionEvent.INVALID_POINTER_ID;
 
 public class LogoGLSurfaceView extends GLSurfaceView {
     private String tag = LogoGLSurfaceView.class.getSimpleName();
+    public LogoGLRenderer logoGLRenderer;
     private final float TOUCH_SCALE_FACTOR = 180.0f / 320;
     private SceneLoader scene;
     private float mLastTouchX;
@@ -20,7 +21,8 @@ public class LogoGLSurfaceView extends GLSurfaceView {
     private ScaleGestureDetector mScaleDetector;
     private float mScaleFactor = 1.f;
     private int mActivePointerId = INVALID_POINTER_ID;
-    public LogoGLRenderer logoGLRenderer;
+
+
 
     /**
      * setEGLContextClientVersion(2);

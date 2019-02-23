@@ -178,7 +178,7 @@ public class LogoGLRenderer implements GLSurfaceView.Renderer {
         // Clear color and depth buffers
         // Log.d(tag,"action "+cardAction);
         // Enable lighting? (NEW)
-// Draw background color
+        // Draw background color
         GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
         if (scene == null) {
             // scene not ready
@@ -197,7 +197,7 @@ public class LogoGLRenderer implements GLSurfaceView.Renderer {
         }
 
         // draw light
-        if (scene.isDrawLighting()) {
+        /*if (scene.isDrawLighting()) {
 
             Object3DImpl lightBulbDrawer = (Object3DImpl) drawer.getPointDrawer();
 
@@ -209,7 +209,8 @@ public class LogoGLRenderer implements GLSurfaceView.Renderer {
             // Draw a point that represents the light bulb
             lightBulbDrawer.draw(scene.getLightBulb(), modelProjectionMatrix, modelViewMatrix, -1, lightPosInEyeSpace);
         }
-
+*/
+        int sz = objects.size();
         for (int i=0; i<objects.size(); i++) {
             Object3DData objData = null;
             try {
