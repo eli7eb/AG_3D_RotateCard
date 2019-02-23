@@ -10,29 +10,5 @@
     tools:context=".app_fragments.WelcomeFragment">
 
 
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="220dp"
-        android:layout_height="140dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.541"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ag_logo" />
 
-    <Button
-        android:id="@+id/TourButton"
-        android:layout_width="wrap_content"
-        android:layout_height="34dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/start_shopping"
-        android:contentDescription="@string/desc"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo"
-        app:layout_constraintVertical_bias="0.111"></Button>
 </android.support.constraint.ConstraintLayout>

@@ -22,8 +22,6 @@ public class LogoGLSurfaceView extends GLSurfaceView {
     private float mScaleFactor = 1.f;
     private int mActivePointerId = INVALID_POINTER_ID;
 
-
-
     /**
      * setEGLContextClientVersion(2);
      * Set the Renderer for drawing on the GLSurfaceView
