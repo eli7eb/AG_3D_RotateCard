@@ -41,8 +41,8 @@ public class LogoGLRenderer implements GLSurfaceView.Renderer {
     private Logo3DData logo3DData;     // (NEW)
 
     private float zInto = -2.5f;
-    private static float angleCube = 0;     // rotational angle in degree for cube
-    private static float speedCube = 0.5f; // rotational speed for cube
+    private static float angleCube = 0;     // rotational angle in degree for logo
+    private static float speedCube = 0.5f; // rotational speed for logo
     private static float red_bg = 249.0f;
     private static float green_bg = 241.0f;
     private static float blue_bg = 241.0f;
@@ -210,7 +210,7 @@ public class LogoGLRenderer implements GLSurfaceView.Renderer {
             lightBulbDrawer.draw(scene.getLightBulb(), modelProjectionMatrix, modelViewMatrix, -1, lightPosInEyeSpace);
         }
 */
-        int sz = objects.size();
+
         for (int i=0; i<objects.size(); i++) {
             Object3DData objData = null;
             try {
@@ -224,6 +224,7 @@ public class LogoGLRenderer implements GLSurfaceView.Renderer {
                     Log.i("ModelRenderer","Using drawer "+drawerObject.getClass());
                     infoLogged = true;
                 }
+
 
                 Integer textureId = textures.get(objData.getTextureData());
                 if (textureId == null && objData.getTextureData() != null) {

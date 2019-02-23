@@ -81,7 +81,7 @@ public class WavefrontLoaderTask extends LoaderTask {
             //publishProgress(3);
             //data.centerScale();
             try {
-                data.setScale(new float[]{5, 5, 5});
+                data.setScale(new float[]{1, 1, 1});
             } catch (Error error) {
                 Log.e(tag,error.getMessage());
             }

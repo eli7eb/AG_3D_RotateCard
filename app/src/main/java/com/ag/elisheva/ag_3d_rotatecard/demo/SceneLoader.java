@@ -120,6 +120,7 @@ public class SceneLoader implements LoaderTask.Callback {
     private Activity activity;
     private Uri uri;
     private LogoGLSurfaceView glView;
+    private Boolean isRotate = Boolean.FALSE;
 
     public SceneLoader(Context context, Activity activity) {
         this.context = context;
@@ -136,12 +137,12 @@ public class SceneLoader implements LoaderTask.Callback {
      * get the data for value - obj file name
      * @param uri
      */
-    public void init(Uri uri) {
+    public void init(Uri uri,Boolean isRotate) {
 
         // Camera to show a point of view
         camera = new Camera();
         this.uri = uri;
-
+        this.isRotate = isRotate;
         startTime = SystemClock.uptimeMillis();
         /*AssetManager assets = context.getAssets();
         Log.i("ContentUtils", "Opening asset: " + uri.getPath());
@@ -196,6 +197,9 @@ public class SceneLoader implements LoaderTask.Callback {
         if (animateModel) {
             for (int i=0; i<objects.size(); i++) {
                 Object3DData obj = objects.get(i);
+                if (isRotate == Boolean.TRUE) {
+                    rotateObject();
+                }
                 animator.update(obj);
             }
         }
@@ -210,6 +214,13 @@ public class SceneLoader implements LoaderTask.Callback {
         lightPoint.setRotationY(angleInDegrees);
     }
 
+    private void rotateObject() {
+        long time = SystemClock.uptimeMillis() % 5000L;
+        float angleInDegrees = (360.0f / 5000.0f) * ((int) time);
+        Object3DData obj = objects.get(0);
+        obj.setRotationY(angleInDegrees);
+        requestRender();
+    }
     private void animateCamera(){
         camera.translateCamera(0.0025f, 0f);
     }

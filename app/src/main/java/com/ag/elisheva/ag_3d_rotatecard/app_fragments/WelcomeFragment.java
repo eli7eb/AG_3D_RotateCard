@@ -122,7 +122,8 @@ public class WelcomeFragment extends Fragment {
             //to another. I wanted to give you a real function in use.
         scene = new SceneLoader(this.getActivity(), this.getActivity());
         Uri uri = Uri.parse("assets://" + mParam1 + "/" + mParam2);
-        scene.init(uri);
+
+        scene.init(uri,Boolean.TRUE);
     }
 
     @Override
