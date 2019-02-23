@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.opengl.GLSurfaceView;
 
 import com.ag.elisheva.ag_3d_rotatecard.MainActivity;
+import com.ag.elisheva.ag_3d_rotatecard.R;
 import com.ag.elisheva.ag_3d_rotatecard.demo.SceneLoader;
 import com.ag.elisheva.ag_3d_rotatecard.view.LogoGLSurfaceView;
 
@@ -83,6 +84,7 @@ public class WelcomeFragment extends Fragment {
         }
 
         Context context = MainActivity.getContext();
+
         AssetManager am = context.getResources().getAssets();
         try {
             list = am.list("rose");
@@ -138,6 +140,7 @@ public class WelcomeFragment extends Fragment {
         } catch (Error e) {
             Log.d(tag,"Error "+e.getMessage());
         }
+
         glView.setScene(scene);
         scene.passGLViewData(glView);
         return glView;

@@ -104,10 +104,10 @@ public class ContentUtils {
      * @throws IOException if there is an error opening stream
      */
     public static InputStream getInputStream(String path) throws IOException {
-        if (path.equalsIgnoreCase("roselogo2.mtl")) {
+        if (path.equalsIgnoreCase("roselogo2.mtl") || path.equalsIgnoreCase("shoelogores.mtl")) {
             return getInputStream(ContentUtils.uri_mtl);
         }
-        if (path.equalsIgnoreCase("logo_color.bmp")) {
+        if (path.equalsIgnoreCase("logo_color.bmp") || path.equalsIgnoreCase("shoelayer.bmp")) {
             return getInputStream(ContentUtils.uri_bmp);
         }
         Uri uri = getUri(path);

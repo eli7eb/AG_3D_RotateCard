@@ -30,6 +30,7 @@ import java.nio.FloatBuffer;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ProgressBar;
 
 import com.ag.elisheva.ag_3d_rotatecard.app_fragments.WelcomeFragment;
@@ -43,6 +44,9 @@ public class MainActivity extends AppCompatActivity  implements WelcomeFragment.
     private String tag = MainActivity.class.getSimpleName();
     WelcomeFragment welcomeFragment;
 
+
+
+    protected Button goToShopButton;
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -66,7 +70,7 @@ public class MainActivity extends AppCompatActivity  implements WelcomeFragment.
 
 
         initApp(true);
-
+        initButton();
 
     }
 
@@ -86,9 +90,15 @@ public class MainActivity extends AppCompatActivity  implements WelcomeFragment.
             String asset_package = getPackageName();
 
             bundle.putString("package",asset_package);
-            bundle.putString("file_name_obj","rose/roselogo2.obj");
+
+           /* bundle.putString("file_name_obj","rose/roselogo2.obj");
             bundle.putString("file_name_mtl","rose/roselogo2.mtl");
-            bundle.putString("file_name_bmp","rose/logo_color.bmp");
+            bundle.putString("file_name_bmp","rose/logo_color.bmp");*/
+
+            bundle.putString("file_name_obj","rose/shoelogores.obj");
+            bundle.putString("file_name_mtl","rose/shoelogores.mtl");
+            bundle.putString("file_name_bmp","rose/shoelayer.bmp");
+
             welcomeFragment.setArguments(bundle);
             fragmentTransaction.add (R.id.fragment_container, welcomeFragment);
             fragmentTransaction.commit();
@@ -99,6 +109,21 @@ public class MainActivity extends AppCompatActivity  implements WelcomeFragment.
                 ex.printStackTrace();
             }
         }
+    }
+
+    /**
+     *
+     */
+    private void initButton() {
+        goToShopButton = findViewById(R.id.tour_button);
+        goToShopButton.setOnClickListener(new View.OnClickListener() {
+                                              @Override
+                                              public void onClick(View v) {
+                                                  Log.d(tag,"clicked");
+                                              }
+        });
+
+
     }
 
     /*
@@ -120,11 +145,7 @@ public class MainActivity extends AppCompatActivity  implements WelcomeFragment.
         bundle.putString("name_on_disk",value.get_name_on_disk());
         bundle.putString("folder_name",value.get_folder_name());
         tour_fragment.setArguments(bundle);*/
-
-
-
-
-    }
+        }
 
     /**
      * for getting the context

@@ -9,6 +9,4 @@
     android:background="@drawable/stock_370886258"
     tools:context=".app_fragments.WelcomeFragment">
 
-
-
 </android.support.constraint.ConstraintLayout>
